@@ -1,11 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-html,
-body,
-:root {
-  height: 100%;
-}
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #root, body > div { /* Adjust this selector based on your project's structure */
+      width: 100%;
+      min-height: 100vh;
+    }
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
