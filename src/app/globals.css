@@ -1,17 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-    }
 
-    #root, body > div { /* Adjust this selector based on your project's structure */
-      width: 100%;
-      min-height: 100vh;
-    }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  height: 100%
+}
 
 @layer base {
  :root {
@@ -82,13 +81,4 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
