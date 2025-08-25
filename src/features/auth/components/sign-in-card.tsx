@@ -1,7 +1,7 @@
 export const SignInCard = () => {
     return (
         <div>
-            Sing In Card
+            Sign In Card
         </div>
     );
 };

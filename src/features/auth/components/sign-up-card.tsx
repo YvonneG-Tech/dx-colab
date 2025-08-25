@@ -1,7 +1,7 @@
 export const SignUpCard = () => {
     return (
         <div>
-            Sing Up Card
+            Sign Up Card
         </div>
     );
 };
