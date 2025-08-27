@@ -10,7 +10,6 @@ import { SignInFlow } from "../types";
 
 interface SignInCardProps {
     setState: (state: SignInFlow) => void;
-    state: SignInFlow;
 }
 
 export const SignInCard = ({setState}: SignInCardProps) => {
@@ -34,6 +33,7 @@ export const SignInCard = ({setState}: SignInCardProps) => {
                    type="email"
                    required
                   />
+
                   <Input
                    disabled={false}
                    value=""
@@ -54,10 +54,11 @@ export const SignInCard = ({setState}: SignInCardProps) => {
                    variant="outline"
                    size="lg"
                    className="w-full relative"
-                   >
+                >
                     <FcGoogle />
                     Continue with Google
-                   </Button> 
+                   </Button>
+
                     <Button
                    disabled={false}
                    onClick={() => {}}

@@ -10,7 +10,6 @@ import { SignInFlow } from "../types";
 
 interface SignUpCardProps {
     setState: (state: SignInFlow) => void;
-    state: SignInFlow;
 }
 
 export const SignUpCard = ({setState}: SignUpCardProps) => {
