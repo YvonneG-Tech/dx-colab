@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 
 export const SignInCard = () => {
     return (
@@ -9,11 +10,10 @@ export const SignInCard = () => {
                 <CardTitle>
                     Login to continue
                 </CardTitle>
-                
-            </CardHeader>
-            <CardDescription>
-                Use your email or another service to continue
+                  <CardDescription>
+                Use your details to continue
             </CardDescription>
+            </CardHeader>
             <CardContent className="space-y-5 px-0 pb-0">
                 <form className="space-y-2.5">
                 <Input
@@ -32,10 +32,26 @@ export const SignInCard = () => {
                    type="password"
                    required
                   />
-                  <Button type="submit" className="w-full" size="lg" disabled={false}>
+                  <Button type="submit" className="w-full bg-black text-white" size="lg" disabled={false}>
                     Continue
                   </Button>
                 </form>
+                <Separator/>
+                <div className="flex flex-col gap-y-2.5">
+                   <Button
+                   disabled={false}
+                   onClick={() ==> {}}
+                   variant="outline"
+                   size="lg"
+                   className="w-full relative"
+                   >
+
+                    Continue with Google
+                   </Button> 
+
+
+                </div>
+
 
             </CardContent>
         </Card>
