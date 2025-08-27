@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ConvexClientProvider } from "./ConvexClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased h-full bg-white text-black selection:bg-blue-100`}
         suppressHydrationWarning
       >
+        <ConvexClientProvider>{children}</ConvexClientProvider>
         {/* Main app container with full height for Slack-like layout */}
         <div className="h-full flex flex-col">
           {children}
