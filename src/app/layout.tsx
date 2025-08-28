@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ConvexClientProvider } from "./ConvexClientProvider";
+import { ConvexClientProvider } from "../components/Convex-Client-Provider";
 
-const inter = Inter({ subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DX Colab",
-  description: "DX Colab",
+  description: "Real-time team collaboration platform built with Next.js and Convex",
 };
 
 export default function RootLayout({
@@ -16,12 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"> 
-      <body className={Inter.className}>{children}
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} h-full`}>
         <ConvexClientProvider>
-          {children}
+          <div className="h-full">
+            {children}
+          </div>
         </ConvexClientProvider>
       </body>
     </html>
   );
-};
+}
