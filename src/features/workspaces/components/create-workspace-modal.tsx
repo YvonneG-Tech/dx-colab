@@ -1,71 +1,66 @@
-import { toast } from "sonner";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { useCallback, useMemo, useState } from "react";
+import { Id } from "../../../../convex/_generated/dataModel";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+type RequestType = { name: string };
+type ResponseType = Id<"workspaces"> | null;
 
-import { useCreateWorkspace } from "..use-create-workspace";
-import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal";
+type Options = {
+  onSuccess?: (data: ResponseType) => void;
+  onError?: (error: Error) => void;
+  onSettled?: () => void;
+  throwError?: boolean;
+};
 
-export const CreateWorkspaceModal = () => {
-  const router = useRouter();
-  const [open, setOpen] = useCreateWorkspaceModal();
-  const [name, setName] = useState("");
+export const useCreateWorkspace = () => {
+  const [data, setData] = useState<ResponseType>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [status, setStatus] = useState<"success" | "error" | "settled" | "pending" | null>(null);
 
-  const { mutate, isPending } = useCreateWorkspace();
+  const isPending = useMemo(() => status === "pending", [status]);
+  const isSuccess = useMemo(() => status === "success", [status]);
+  const isError = useMemo(() => status === "error", [status]);
+  const isSettled = useMemo(() => status === "settled", [status]);
 
-  const handleClose = () => {
-    setOpen(false);
-    setName("");
-  };
+  const mutation = useMutation(api.workspaces.create);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const mutate = useCallback(
+    async (values: RequestType, options?: Options) => {
+      try {
+        setData(null);
+        setError(null);
+        setStatus("pending");
 
-    mutate(
-      { name },
-      {
-        onSuccess(id) {
-          toast.success("Workspace created");
-          router.push(`/workspace/${id}`);
-          handleClose();
-        },
+        const response = await mutation(values);
+        
+        setData(response);
+        setStatus("success");
+        options?.onSuccess?.(response);
+      } catch (error) {
+        setStatus("error");
+        const errorObj = error instanceof Error ? error : new Error("Something went wrong");
+        setError(errorObj);
+        options?.onError?.(errorObj);
+        
+        if (options?.throwError) {
+          throw error;
+        }
+      } finally {
+        setStatus("settled");
+        options?.onSettled?.();
       }
-    );
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Add a workspace</DialogTitle>
-          <DialogDescription className="hidden"></DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            disabled={isPending}
-            required
-            autoFocus
-            minLength={3}
-            placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'"
-          />
-          <div className="flex justify-end">
-            <Button type="submit" disabled={isPending}>
-              Create
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+    },
+    [mutation]
   );
+
+  return {
+    mutate,
+    data,
+    error,
+    isPending,
+    isSuccess,
+    isError,
+    isSettled,
+  };
 };
