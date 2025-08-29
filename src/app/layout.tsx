@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ConvexClientProvider } from "../components/Convex-Client-Provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
+
+import { Modals } from "@/components/modals";
+import { Toaster } from "@/components/ui/sonner";
+import { JotaiProvider } from "@/components/jotai-provider";
+import { ConvexClientProvider } from "@/components/convex-client-provider";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DX Colab",
-  description: "Real-time team collaboration platform built with Next.js and Convex",
+  title: "mkaidev | kerja",
+  description:
+    "Build a Real-Time Slack Clone With Nextjs, React, Tailwind, Auth.js",
 };
 
 export default function RootLayout({
@@ -18,15 +24,17 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-    <html lang="en" className="h-full">
-      <body className={`${inter.className} h-full`}>
-        <ConvexClientProvider>
-          <div className="h-full">
-            {children}
-          </div>
-        </ConvexClientProvider>
-      </body>
-    </html>
+      <html lang="en">
+        <body className={inter.className}>
+          <ConvexClientProvider>
+            <JotaiProvider>
+              <Modals />
+              {children}
+            </JotaiProvider>
+            <Toaster richColors theme="light" position="bottom-center" />
+          </ConvexClientProvider>
+        </body>
+      </html>
     </ConvexAuthNextjsServerProvider>
   );
 }
