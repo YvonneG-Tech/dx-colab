@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { useCreateWorkspace } from "../api/use-create-workspace";
+import { useCreateWorkspace } from "..features/workspaces/api/use-create-workspace";
 import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal";
 
 export const CreateWorkspaceModal = () => {
