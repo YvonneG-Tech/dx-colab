@@ -1,40 +1,71 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
+"use client";
 
-import { Modals } from "@/components/modals";
-import { Toaster } from "@/components/ui/sonner";
-import { JotaiProvider } from "@/components/jotai-provider";
-import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
-import "./globals.css";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-const inter = Inter({ subsets: ["latin"] });
+import { useCreateWorkspace } from "../api/use-create-workspace";
+import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal";
 
-export const metadata: Metadata = {
-  title: "mkaidev | kerja",
-  description:
-    "Build a Real-Time Slack Clone With Nextjs, React, Tailwind, Auth.js",
-};
+export const CreateWorkspaceModal = () => {
+  const router = useRouter();
+  const [open, setOpen] = useCreateWorkspaceModal();
+  const [name, setName] = useState("");
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  const { mutate, isPending } = useCreateWorkspace();
+
+  const handleClose = () => {
+    setOpen(false);
+    setName("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    mutate(
+      { name },
+      {
+        onSuccess(id: unknown) {
+          toast.success("Workspace created");
+          router.push(`/workspace/${id}`);
+          handleClose();
+        },
+      }
+    );
+  };
+
   return (
-    <ConvexAuthNextjsServerProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <ConvexClientProvider>
-            <JotaiProvider>
-              <Modals />
-              {children}
-            </JotaiProvider>
-            <Toaster richColors theme="light" position="bottom-center" />
-          </ConvexClientProvider>
-        </body>
-      </html>
-    </ConvexAuthNextjsServerProvider>
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Add a workspace</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            disabled={isPending}
+            required
+            autoFocus
+            minLength={3}
+            placeholder="Workspace name e.g. 'Work', 'Personal', 'Home'"
+          />
+          <div className="flex justify-end">
+            <Button disabled={isPending} type="submit">
+              Create
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
-}
+};
