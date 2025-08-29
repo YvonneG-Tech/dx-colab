@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Delta, Op } from "quill/core";
+import { Delta, Op } from "quill";
 import { MdSend } from "react-icons/md";
 import { PiTextAa } from "react-icons/pi";
 import { ImageIcon, Smile, XIcon } from "lucide-react";
@@ -150,7 +150,7 @@ const Editor = ({
     }
   };
 
-  const onEmojiSelect = (emoji: any) => {
+  const onEmojiSelect = (emoji: { native: string }) => {
     const quill = quillRef.current;
 
     quill?.insertText(quill?.getSelection()?.index || 0, emoji.native);
@@ -166,6 +166,8 @@ const Editor = ({
         ref={imageElementRef}
         onChange={(e) => setImage(e.target.files![0])}
         className="hidden"
+        aria-label="Upload image"
+        title="Upload image"
       />
       <div
         className={cn(
@@ -184,6 +186,7 @@ const Editor = ({
                     imageElementRef.current!.value = "";
                   }}
                   className="hidden group-hover/image:flex rounded-full bg-destructive hover:bg-destructive text-secondary absolute -top-2 -right-2 size-5 z-[4] items-center justify-center"
+                  title="Remove image"
                 >
                   <XIcon className="size-3.5" />
                 </button>
@@ -206,12 +209,13 @@ const Editor = ({
               variant="ghost"
               size="icon"
               onClick={toogleToolbar}
+              title={isToolbarVisible ? "Hide formatting" : "Show formatting"}
             >
               <PiTextAa className="size-4" />
             </Button>
           </Hint>
           <EmojiPopover onEmojiSelect={onEmojiSelect}>
-            <Button disabled={disabled} size="icon" variant="ghost">
+            <Button disabled={disabled} size="icon" variant="ghost" title="Add emoji">
               <Smile className="size-4" />
             </Button>
           </EmojiPopover>
@@ -222,6 +226,7 @@ const Editor = ({
                 variant="ghost"
                 size="icon"
                 onClick={() => imageElementRef.current?.click()}
+                title="Upload image"
               >
                 <ImageIcon className="size-4" />
               </Button>
@@ -268,6 +273,7 @@ const Editor = ({
                   ? "bg-white text-muted-foreground hover:bg-white"
                   : "bg-[#007A5A] text-white hover:bg-[#007A5A]/80"
               )}
+              title="Send message"
             >
               <MdSend className="size-4" />
             </Button>
@@ -288,6 +294,4 @@ const Editor = ({
       )}
     </div>
   );
-};
-
-export default Editor;
+}
