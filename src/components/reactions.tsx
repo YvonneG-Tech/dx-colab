@@ -41,6 +41,7 @@ export const Reactions = ({ data, onChange }: ReactionsProps) => {
               reaction.memberIds.includes(currentMemberId) &&
                 "bg-blue-100/70 border-blue-500 text-white"
             )}
+            title={`${reaction.count} ${reaction.count === 1 ? "person" : "people"} reacted with ${reaction.value}`}
           >
             {reaction.value}
             <span
@@ -58,7 +59,10 @@ export const Reactions = ({ data, onChange }: ReactionsProps) => {
         hint="Add reaction"
         onEmojiSelect={(emoji) => onChange(emoji.native)}
       >
-        <button className="h-7 px-3 rounded-full bg-slate-200/70 border border-transparent hover:border-slate-500 text-slate-800 flex items-center gap-x-1">
+        <button 
+          className="h-7 px-3 rounded-full bg-slate-200/70 border border-transparent hover:border-slate-500 text-slate-800 flex items-center gap-x-1"
+          title="Add reaction"
+        >
           <MdOutlineAddReaction className="size-4" />
         </button>
       </EmojiPopover>
