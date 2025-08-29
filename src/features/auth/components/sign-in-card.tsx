@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { TriangleAlert } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
 
@@ -40,7 +39,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
       });
   };
 
-  const onProviderSignIn = (value: "github" | "google") => {
+  const onProviderSignIn = (value: "google") => {
     setPending(true);
     signIn(value).finally(() => {
       setPending(false);
@@ -89,7 +88,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
           </Button>
         </form>
         <Separator />
-        <div className="flex flex-col gap-y-2.5">
+
           <Button
             type="button"
             disabled={pending}
@@ -101,18 +100,6 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             <FcGoogle className="size-5 absolute top-3 left-2.5" />
             Continue with Google
           </Button>
-          <Button
-            type="button"
-            disabled={pending}
-            onClick={() => onProviderSignIn("github")}
-            variant={"outline"}
-            size={"lg"}
-            className="w-full relative"
-          >
-            <FaGithub className="size-5 absolute top-3 left-2.5" />
-            Continue with Github
-          </Button>
-        </div>
         <p className="text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Button
