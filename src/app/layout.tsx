@@ -5,8 +5,7 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { Modals } from "@/components/modal";
 import { Toaster } from "@/components/ui/sonner";
 import { JotaiProvider } from "@/components/jotai-provider";
-import { ConvexClientProvider } from "@/components/convex-client-provider";
-
+import { ConvexClientProvider } from "@/components/Convex-Client-Provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
