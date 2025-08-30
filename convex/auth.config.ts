@@ -1,11 +1,5 @@
 const authConfig = {
-  providers: [
-    {
-      domain: "http://localhost:3000",
-      applicationID: "convex",
-    },
-  ],
+  providers: [],
 };
 
 export default authConfig;
-// c:\Users\yvonn\dx-colab\convex\auth.config.ts
