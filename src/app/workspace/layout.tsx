@@ -6,10 +6,10 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
+} from "@/components/ui/resizeable";
 import { usePanel } from "@/hooks/use-panel";
-import { Thread } from "@/features/messages/components/thread";
-import { Profile } from "@/features/members/components/profile";
+import { Thread } from "@/features/messages/components/threads";
+import { Profile } from "@/features/members/components/profiles";
 
 import { Sidebar } from "./sidebar";
 import { Toolbar } from "./toolbar";

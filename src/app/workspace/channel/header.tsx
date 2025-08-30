@@ -22,8 +22,8 @@ import { useChannelId } from "@/hooks/use-channel-id";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { useUpdateChannel } from "@/features/channels/api/use-update-channel";
-import { useRemoveChannel } from "@/features/channels/api/use-remove-channel";
+import { useUpdateChannel } from "@/features/channels/api/use-update-channels";
+import { useRemoveChannel } from "@/features/channels/api/use-remove-channels";
 
 interface HeaderProps {
   title: string;

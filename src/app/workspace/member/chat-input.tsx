@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 import { useCreateMessage } from "@/features/messages/api/use-create-message";
-import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
+import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload.url";
 
 import { Id } from "../../../../../../convex/_generated/dataModel";
 

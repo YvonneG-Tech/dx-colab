@@ -7,7 +7,7 @@ import { AlertTriangle, Loader } from "lucide-react";
 import { useMemberId } from "@/hooks/use-member-id";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
-import { useCreateOrGetConversation } from "@/features/conversations/api/use-create-or-get-conversation";
+import { useCreateOrGetConversation } from "@/features/conversations/use-create-or-get-conversations";
 
 import { Conversation } from "./conversation";
 import { Id } from "../../../../../../convex/_generated/dataModel";

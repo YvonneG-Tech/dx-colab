@@ -14,7 +14,7 @@ import { Hint } from "@/components/hint";
 import { Doc } from "../../../../convex/_generated/dataModel";
 
 import { InviteModal } from "./invite-modal";
-import { PreferencesModal } from "./preferences-modal";
+import { PreferencesModal } from "./preference";
 
 interface WorkspaceHeaderProps {
   workspace: Doc<"workspaces">;
