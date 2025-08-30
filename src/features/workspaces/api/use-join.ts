@@ -7,3 +7,7 @@ export const useGetWorkspaces = () => {
 
   return { data, isLoading };
 };
+
+export function useJoin(): { mutate: any; isPending: any; } {
+  throw new Error("Function not implemented.");
+}

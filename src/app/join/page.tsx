@@ -8,7 +8,7 @@ import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import VerificationInput from "react-verification-input";
 
-import { useJoin } from "@/features/workspaces/api/use-join";
+import * as useJoin from "@/features/workspaces/api/use-join";
 import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
 
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ const JoinPage = () => {
   const router = useRouter();
   const workspaceId = useWorkspaceId();
 
-  const { mutate, isPending } = useJoin();
+  const { mutate, isPending } = useJoin.useJoin();
   const { data, isLoading } = useGetWorkspaceInfo({ id: workspaceId });
 
   const isMember = useMemo(() => data?.isMember, [data?.isMember]);
@@ -35,7 +35,7 @@ const JoinPage = () => {
     mutate(
       { workspaceId, joinCode: value },
       {
-        onSuccess: (id) => {
+        onSuccess: (id: unknown) => {
           router.replace(`/workspace/${id}`);
           toast.success("Workspace joined");
         },
