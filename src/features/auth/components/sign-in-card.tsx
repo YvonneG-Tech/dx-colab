@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
 import { TriangleAlert } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
 
@@ -40,12 +39,6 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
       });
   };
 
-  const onProviderSignIn = (value: "google") => {
-    setPending(true);
-    signIn(value).finally(() => {
-      setPending(false);
-    });
-  };
 
   return (
     <Card className="w-full h-full p-8">
