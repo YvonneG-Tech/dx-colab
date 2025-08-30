@@ -112,31 +112,6 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             Continue
           </Button>
         </form>
-        <Separator />
-        <div className="flex flex-col gap-y-2.5">
-          <Button
-            type="button"
-            disabled={pending}
-            onClick={() => onProviderSignUp("google")}
-            variant={"outline"}
-            size={"lg"}
-            className="w-full relative"
-          >
-            <FcGoogle className="size-5 absolute top-3 left-2.5" />
-            Continue with Google
-          </Button>
-          <Button
-            type="button"
-            disabled={pending}
-            onClick={() => onProviderSignUp("github")}
-            variant={"outline"}
-            size={"lg"}
-            className="w-full relative"
-          >
-            <FaGithub className="size-5 absolute top-3 left-2.5" />
-            Continue with Github
-          </Button>
-        </div>
         <p className="text-xs text-muted-foreground">
           Already have an account?{" "}
           <Button

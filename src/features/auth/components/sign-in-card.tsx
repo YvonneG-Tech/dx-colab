@@ -87,19 +87,6 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             Continue
           </Button>
         </form>
-        <Separator />
-
-          <Button
-            type="button"
-            disabled={pending}
-            onClick={() => onProviderSignIn("google")}
-            variant={"outline"}
-            size={"lg"}
-            className="w-full relative"
-          >
-            <FcGoogle className="size-5 absolute top-3 left-2.5" />
-            Continue with Google
-          </Button>
         <p className="text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Button
