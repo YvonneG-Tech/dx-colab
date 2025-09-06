@@ -1,7 +1,7 @@
-import { convexAuth } from "@convex-dev/auth/server";
-import { Password } from "@convex-dev/auth/providers/Password";
+    // convex/auth.ts
+    import { Password } from "@convex-dev/auth/providers/Password";
+    import { convexAuth } from "@convex-dev/auth/server";
 
-export const { auth, signIn, signOut, store } = convexAuth({
-  providers: [Password],
-});
-// c:\Users\yvonn\dx-colab\convex\auth.ts
+    export const { auth, signIn, signOut, store, isAuthenticated } = convexAuth({
+      providers: [Password],
+    });
