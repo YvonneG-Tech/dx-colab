@@ -1,5 +1,7 @@
+import { convexAuth } from "@convex-dev/auth/server";
+
 const authConfig = {
-  providers: [],
+  providers: [ convexAuth ]
 };
 
 export default authConfig;
