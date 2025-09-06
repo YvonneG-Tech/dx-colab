@@ -11,8 +11,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "mkaidev | kerja",
-  description: "Build a Real-Time Slack Clone With Nextjs, React, Tailwind, Auth.js",
+  title: "dx-colab",
+  description: "The next generation of collaborative development",
 };
 
 export default function RootLayout({
