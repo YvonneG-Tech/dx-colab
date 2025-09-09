@@ -26,7 +26,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
       setPending(false);
     })
   }
-  const onProviderSignIn = (value: "google" | "github") => {
+  const onProviderSignIn = (value: "google" ) => {
     setPending(true);
     signIn(value).finally(() => {
       setPending(false)
