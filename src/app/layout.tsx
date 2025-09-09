@@ -1,18 +1,26 @@
+
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
-
-import { Modals } from "@/components/modal";
-import { Toaster } from "@/components/ui/sonner";
-import { JotaiProvider } from "@/components/jotai-provider";
-import { ConvexClientProvider } from "@/components/Convex-Client-Provider";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ConvexClientProvider } from "@/components/Convex-Client-Provider";
+import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
+import Modals from "@/components/modal";
+import { Toaster } from "sonner"
+import { JotaiProvider } from "@/components/jotai-provider";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-const inter = Inter({ subsets: ["latin"] });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "dx-colab",
-  description: "The next generation of collaborative development",
+  title: "Slack | CWA",
+  description: "CREATED WITH NEXTJS/ TYPESCRIPT/ CONVEX",
 };
 
 export default function RootLayout({
@@ -22,15 +30,19 @@ export default function RootLayout({
 }>) {
   return (
     <ConvexAuthNextjsServerProvider>
-      <html lang="en" suppressHydrationWarning={true}>
-        <body className={inter.className}>
-          <ConvexClientProvider>
-            <JotaiProvider>
-              <Modals />
-              {children}
-            </JotaiProvider>
-            <Toaster richColors theme="light" position="bottom-center" />
-          </ConvexClientProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <NuqsAdapter>
+            <ConvexClientProvider>
+              <JotaiProvider>
+                <Toaster />
+                <Modals />
+                {children}
+              </JotaiProvider>
+            </ConvexClientProvider>
+          </NuqsAdapter>
         </body>
       </html>
     </ConvexAuthNextjsServerProvider>
