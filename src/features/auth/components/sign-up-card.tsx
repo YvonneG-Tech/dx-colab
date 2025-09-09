@@ -44,7 +44,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
           Sign up to Continue
         </CardTitle>
         <CardDescription>
-          Use your email or another service to continue
+          Use your email or google to continue
         </CardDescription>
       </CardHeader>
       {!!error && (
