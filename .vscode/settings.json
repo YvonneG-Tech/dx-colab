@@ -1,8 +1,6 @@
 {
-    "CodeGPT.apiKey": "CodeGPT Plus Beta",
-    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-    "json.schemas": []
-    {"emmet.includeLanguages": {
+    "json.schemas": [],
+  "emmet.includeLanguages": {
     "postcss": "css"
   }
-    }
+}
