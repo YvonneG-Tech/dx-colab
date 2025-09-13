@@ -5,7 +5,7 @@ import "./globals.css";
 import { ConvexClientProvider } from "@/components/Convex-Client-Provider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import Modals from "@/components/modal";
-import { Toaster } from "sonner"
+import { Toaster } from "sonner";
 import { JotaiProvider } from "@/components/jotai-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 const geistSans = Geist({
@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Slack | CWA",
-  description: "CREATED WITH NEXTJS/ TYPESCRIPT/ CONVEX",
+  title: "DX-CoLab",
+  description: "Collaboration Tool",
 };
 
 export default function RootLayout({
