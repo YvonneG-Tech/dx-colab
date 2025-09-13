@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { FaGithub } from "react-icons/fa"
 import { SignInFlow } from "../types"
 import { useState } from "react"
 import { TriangleAlert } from "lucide-react"
@@ -44,7 +45,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
           Sign up to Continue
         </CardTitle>
         <CardDescription>
-          Use your email or google to continue
+          Use your email or another service to continue
         </CardDescription>
       </CardHeader>
       {!!error && (
@@ -107,6 +108,16 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             >
               <FcGoogle className="size-5 absolute top-2.5 left-2.5" />
               Continue with Google
+            </Button>
+            <Button
+              disabled={pending}
+              variant={"outline"}
+              size={"lg"}
+              onClick={() => { onProviderSignUp("github") }}
+              className="w-full relative"
+            >
+              <FaGithub className="size-5 absolute top-2.5 left-2.5" />
+              Continue with Github
             </Button>
           </div>
           <p className="text-xs text-muted-foreground">
