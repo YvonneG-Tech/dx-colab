@@ -39,7 +39,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
           Login to Continue
         </CardTitle>
         <CardDescription>
-          Use your email or Google to continue
+          Use your email or another service to continue
         </CardDescription>
       </CardHeader>
       {!!error && (
