@@ -4,6 +4,7 @@ import { useCreateWorkspaceModal } from "@/features/workspaces/store/use-create-
 import { useRouter } from "next/navigation";
 import { useGetWorkSpaces } from "@/features/workspaces/api/use-get-workspaces";
 import { useEffect, useMemo } from "react";
+
 export default function Home() {
   const router = useRouter();
   const [open, setOpen] = useCreateWorkspaceModal();

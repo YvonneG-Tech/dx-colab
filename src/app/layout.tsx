@@ -8,6 +8,7 @@ import Modals from "@/components/modal";
 import { Toaster } from "sonner";
 import { JotaiProvider } from "@/components/jotai-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
