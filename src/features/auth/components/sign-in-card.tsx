@@ -15,7 +15,6 @@ import { SignInFlow } from '../types';
 import { TriangleAlert } from 'lucide-react';
 
 interface SignInCardProps {
-  // eslint-disable-next-line no-unused-vars
   setState: (state: SignInFlow) => void;
 }
 

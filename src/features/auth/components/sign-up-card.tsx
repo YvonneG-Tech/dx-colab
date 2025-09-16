@@ -15,7 +15,6 @@ import { FcGoogle } from 'react-icons/fc';
 import { SignInFlow } from '../types';
 
 interface SignUpCardProps {
-  // eslint-disable-next-line no-unused-vars
   setState: (state: SignInFlow) => void;
 }
 
