@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -8,7 +9,7 @@ import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import VerificationInput from "react-verification-input";
 
-import { useJoin } from "@/features/workspaces/api/use-join"; 
+import { useJoin } from "@/features/workspaces/api/use-join";
 import { useGetWorkspaceInfo } from "@/features/workspaces/api/use-get-workspace-info";
 
 import { cn } from "@/lib/utils";
@@ -35,7 +36,7 @@ const JoinPage = () => {
     mutate(
       { workspaceId, joinCode: value },
       {
-        onSuccess: (id: string) => {
+        onSuccess: (id) => {
           router.replace(`/workspace/${id}`);
           toast.success("Workspace joined");
         },
