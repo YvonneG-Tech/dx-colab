@@ -1,64 +1,60 @@
-"use client";
+/* eslint-disable */
+/**
+ * Generated data model types.
+ *
+ * THIS CODE IS AUTOMATICALLY GENERATED.
+ *
+ * To regenerate, run `npx convex dev`.
+ * @module
+ */
 
-import Link from "next/link";
-import { cva, type VariantProps } from "class-variance-authority";
+import type {
+  DataModelFromSchemaDefinition,
+  DocumentByName,
+  TableNamesInDataModel,
+  SystemTableNames,
+} from "convex/server";
+import type { GenericId } from "convex/values";
+import schema from "convex/schema";
 
-import { cn } from "@/lib/utils";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
+/**
+ * The names of all of your Convex tables.
+ */
+export type TableNames = TableNamesInDataModel<DataModel>;
 
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+/**
+ * The type of a document stored in Convex.
+ *
+ * @typeParam TableName - A string literal type of the table name (like "users").
+ */
+export type Doc<TableName extends TableNames> = DocumentByName<
+  DataModel,
+  TableName
+>;
 
-import { Id } from "../../../../convex/_generated/dataModel";
+/**
+ * An identifier for a document in Convex.
+ *
+ * Convex documents are uniquely identified by their `Id`, which is accessible
+ * on the `_id` field. To learn more, see [Document IDs](https://docs.convex.dev/using/document-ids).
+ *
+ * Documents can be loaded using `db.get(id)` in query and mutation functions.
+ *
+ * IDs are just strings at runtime, but this type can be used to distinguish them from other
+ * strings when type checking.
+ *
+ * @typeParam TableName - A string literal type of the table name (like "users").
+ */
+export type Id<TableName extends TableNames | SystemTableNames> =
+  GenericId<TableName>;
 
-const userItemVariants = cva(
-  "flex h-7 px-4 gap-1.5 items-center justify-start overflow-hidden text-sm font-normal",
-  {
-    variants: {
-      variant: {
-        default: "text-[#F9EDFFCC]",
-        active: "bg-white text-[#481349] hover:bg-white/90",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
-
-interface UserItemProps {
-  id: Id<"members">;
-  label?: string;
-  image?: string;
-  variant?: VariantProps<typeof userItemVariants>["variant"];
-}
-
-export const UserItem = ({
-  id,
-  label = "Member",
-  image,
-  variant,
-}: UserItemProps) => {
-  const workspaceId = useWorkspaceId();
-
-  const avatarFallback = label.charAt(0).toUpperCase();
-
-  return (
-    <Button
-      variant="transparent"
-      className={cn(userItemVariants({ variant }))}
-      size="sm"
-      asChild
-    >
-      <Link href={`/workspace/${workspaceId}/member/${id}`}>
-        <Avatar className="size-5 rounded-md mr-1">
-          <AvatarImage alt={label} src={image} />
-          <AvatarFallback className="rounded-md bg-sky-500 text-white">
-            {avatarFallback}
-          </AvatarFallback>
-        </Avatar>
-        <span className="text-sm truncate">{label}</span>
-      </Link>
-    </Button>
-  );
-};
+/**
+ * A type describing your Convex data model.
+ *
+ * This type includes information about what tables you have, the type of
+ * documents stored in those tables, and the indexes defined on them.
+ *
+ * This type is used to parameterize methods like `queryGeneric` and
+ * `mutationGeneric` to make them type-safe.
+ */
+export type DataModel = DataModelFromSchemaDefinition<typeof schema>;
