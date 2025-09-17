@@ -32,7 +32,9 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "convex/**/*.ts",
+    "convex/**/*.js"
   ],
   "exclude": [
     "node_modules"
