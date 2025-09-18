@@ -15,7 +15,7 @@ import { Sidebar } from "./sidebar";
 import { Toolbar } from "./toolbar";
 import { WorkspaceSidebar } from "./workspace-sidebar";
 
-import { Id } from "../../../../convex/_generated/dataModel";
+import { Id } from "convex/_generated/dataModel"
 
 interface WorkspaceIdLayoutProps {
   children: React.ReactNode;
