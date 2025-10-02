@@ -11,7 +11,7 @@ import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload.
 
 import { Id } from "../../../../../../convex/_generated/dataModel";
 
-const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
+const Editor = dynamic(() => import("@/components/editor") , { ssr: false });
 
 interface ChatInputProps {
   placeholder: string;
@@ -79,6 +79,7 @@ export const ChatInput = ({ placeholder }: ChatInputProps) => {
       await createMessage(values, { throwError: true });
 
       setEditorKey((prevKey) => prevKey + 1);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to send message");
     } finally {

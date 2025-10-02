@@ -7,9 +7,7 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 import { useCreateMessage } from "@/features/messages/api/use-create-message";
 import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload.url";
-
-import { Id } from "../../../../../../convex/_generated/dataModel";
-
+import { Id } from "convex/_generated/dataModel";
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 interface ChatInputProps {
@@ -78,6 +76,7 @@ export const ChatInput = ({ placeholder, conversationId }: ChatInputProps) => {
       await createMessage(values, { throwError: true });
 
       setEditorKey((prevKey) => prevKey + 1);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error("Failed to send message");
     } finally {

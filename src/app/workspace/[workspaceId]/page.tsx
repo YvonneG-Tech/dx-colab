@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Loader, TriangleAlert } from "lucide-react";
@@ -59,7 +58,7 @@ const WorkspaceIdPage = () => {
     workspaceId,
   ]);
 
-  if (workspaceId || workspaceLoading || channelsLoading || memberLoading) {
+  if (workspaceLoading || channelsLoading || memberLoading) {
     return (
       <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
         <Loader className="size-6 animate-spin text-muted-foreground" />
@@ -67,7 +66,7 @@ const WorkspaceIdPage = () => {
     );
   }
 
-  if (workspace || !member) {
+  if (!workspace || !member) {
     return (
       <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
         <TriangleAlert className="size-6 text-destructive" />
@@ -78,12 +77,17 @@ const WorkspaceIdPage = () => {
     );
   }
 
-  return (
-    <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
-      <TriangleAlert className="size-6 text-destructive" />
-      <span className="text-sm text-muted-foreground">No channel found</span>
-    </div>
-  );
+  if (!channels || channels.length === 0) {
+    return (
+      <div className="h-full flex-1 flex items-center justify-center flex-col gap-2">
+        <TriangleAlert className="size-6 text-destructive" />
+        <span className="text-sm text-muted-foreground">No channel found</span>
+      </div>
+    );
+  }
+
+  // Optionally, render nothing or a fallback if redirected
+  return null;
 };
 
 export default WorkspaceIdPage;

@@ -26,7 +26,7 @@ const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
   const showPanel = !!parentMessageId || !!profileMemberId;
 
   return (
-    <div className="h-full">
+    <div className="h-full bg-blue-50">
       <Toolbar />
       <div className="flex h-[calc(100vh-40px)]">
         <Sidebar />

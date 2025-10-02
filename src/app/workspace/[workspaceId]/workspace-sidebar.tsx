@@ -11,12 +11,10 @@ import { useCurrentMember } from "@/features/members/api/use-current-member";
 import { useGetWorkspace } from "@/features/workspaces/api/use-get-workspace";
 import { useGetChannels } from "@/features/channels/api/use-get-channels";
 import { useCreateChannelModal } from "@/features/channels/store/use-create-channel-modal";
-
+import { UserItem } from "./user-item";
 import { useMemberId } from "@/hooks/use-member-id";
 import { useChannelId } from "@/hooks/use-channel-id";
 import { useWorkspaceId } from "@/hooks/use-workspace-id";
-
-import { UserItem } from "./user-item";
 import { SidebarItem } from "./sidebar-item";
 import { WorkspaceHeader } from "./workspace-header";
 import { WorkspaceSection } from "./workspace-section";
@@ -26,7 +24,7 @@ export const WorkspaceSidebar = () => {
   const channelId = useChannelId();
   const workspaceId = useWorkspaceId();
 
-  const [_open, setOpen] = useCreateChannelModal();
+  const [, setOpen] = useCreateChannelModal();
 
   const { data: member, isLoading: memberLoading } = useCurrentMember({
     workspaceId,
@@ -36,11 +34,11 @@ export const WorkspaceSidebar = () => {
     id: workspaceId,
   });
 
-  const { data: channels, isLoading: channelsLoading } = useGetChannels({
+  const { data: channels } = useGetChannels({
     workspaceId,
   });
 
-  const { data: members, isLoading: membersLoading } = useGetMembers({
+  const { data: members } = useGetMembers({
     workspaceId,
   });
 

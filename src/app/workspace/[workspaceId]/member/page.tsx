@@ -10,8 +10,7 @@ import { useWorkspaceId } from "@/hooks/use-workspace-id";
 import { useCreateOrGetConversation } from "@/features/conversations/use-create-or-get-conversations";
 
 import { Conversation } from "./conversation";
-import { Id } from "../../../../../../convex/_generated/dataModel";
-
+import { Id } from "convex/_generated/dataModel";
 const MemberIdPage = () => {
   const memberId = useMemberId();
   const workspaceId = useWorkspaceId();
